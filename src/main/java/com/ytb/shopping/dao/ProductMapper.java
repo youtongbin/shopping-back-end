@@ -1,6 +1,8 @@
 package com.ytb.shopping.dao;
 
 import com.ytb.shopping.pojo.Product;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface ProductMapper {
@@ -43,4 +45,18 @@ public interface ProductMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Product record);
+
+
+    /**
+     * 更新商品状态
+     */
+    int updateProductKeySelective(Product product);
+
+
+    /**
+     * 根据商品id查询或商品名模糊查询
+     */
+    List<Product> findProductsByIdOrName(@Param("productId") Integer productId,
+                                         @Param("productName") String productName);
+
 }

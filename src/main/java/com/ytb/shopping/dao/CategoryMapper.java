@@ -1,6 +1,8 @@
 package com.ytb.shopping.dao;
 
 import com.ytb.shopping.pojo.Category;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface CategoryMapper {
@@ -43,4 +45,17 @@ public interface CategoryMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Category record);
+
+    /**
+     * 获取品类子节点（平级）
+     */
+    List<Category> findChildCategory(int categoryId);
+
+    /**
+     * 修改品类名字
+     */
+    int setCategoryName(@Param("categoryId") Integer categoryId,@Param("categoryName") String categoryName);
+
+
+
 }

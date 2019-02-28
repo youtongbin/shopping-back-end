@@ -10,6 +10,7 @@ import com.ytb.shopping.common.ServerResponse;
 import com.ytb.shopping.pojo.UserInfo;
 import com.ytb.shopping.service.IUserService;
 import com.ytb.shopping.vo.UserSimpleInfoVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,8 +31,14 @@ public class UserController
 		ServerResponse serverResponse = userService.login(username, password);
 		if (serverResponse.isSuccess())
 		{
-			UserSimpleInfoVO userSimpleInfoVO = (UserSimpleInfoVO)serverResponse.getData();
-			session.setAttribute("current_user", userSimpleInfoVO);
+			UserInfo userInfo = (UserInfo) serverResponse.getData();
+
+			UserSimpleInfoVO userSimpleInfoVO = new UserSimpleInfoVO();
+			BeanUtils.copyProperties(userInfo, userSimpleInfoVO);
+
+			serverResponse.setData(userSimpleInfoVO);
+
+			session.setAttribute(Const.CURRENT_USER, userSimpleInfoVO);
 		}
 		return serverResponse;
 	}

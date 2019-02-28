@@ -41,9 +41,7 @@ public class UserServiceImpl implements IUserService {
 			return ServerResponse.serverResponseByFail(UserEnum.LOGIN_FAIL.getStatus(), UserEnum.LOGIN_FAIL.getMsg());
 		} else
 		{
-			UserSimpleInfoVO loginSuccessVO = new UserSimpleInfoVO();
-			BeanUtils.copyProperties(userInfo, loginSuccessVO);
-			return ServerResponse.serverResponseBySuccess(loginSuccessVO);
+			return ServerResponse.serverResponseBySuccess(userInfo);
 		}
 	}
 
