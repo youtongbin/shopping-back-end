@@ -68,6 +68,11 @@ public class CartServiceImpl implements ICartService {
         return ServerResponse.serverResponseBySuccess(cartVO);
     }
 
+    /**
+     * CartVO转换
+     * @param userId
+     * @return
+     */
     private CartVO getCartVOLimit(Integer userId){
         CartVO cartVO = new CartVO();
         BigDecimal cartTotalPrice = new BigDecimal("0");
