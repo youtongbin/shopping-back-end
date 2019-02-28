@@ -177,7 +177,7 @@ public class ProductManageServiceImpl implements IProductManageService {
         return ServerResponse.serverResponseBySuccess(pageInfo);
     }
 
-    private ProductListVO translateProductListVO(Product product){
+    public static ProductListVO translateProductListVO(Product product){
         ProductListVO productListVO = new ProductListVO();
 
         BeanUtils.copyProperties(product,productListVO);

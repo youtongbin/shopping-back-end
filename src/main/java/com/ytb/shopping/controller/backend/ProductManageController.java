@@ -8,6 +8,7 @@ import com.ytb.shopping.enums.RoleEnum;
 import com.ytb.shopping.pojo.Product;
 import com.ytb.shopping.service.IProductManageService;
 import com.ytb.shopping.vo.UserManagerSimpleInfoVo;
+import com.ytb.shopping.vo.UserSimpleInfoVO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -96,6 +97,12 @@ public class ProductManageController {
                                @RequestParam(value = "pageSize",required = false,defaultValue = "10") Integer pageSize){
 
         //登录状态判断
+
+        UserSimpleInfoVO userSimpleInfoVO = (UserSimpleInfoVO) session.getAttribute(Const.CURRENT_USER);
+        if (userSimpleInfoVO != null){
+            return ServerResponse.serverResponseByFail(CommonEnum.NO_POWER.getMsg());
+        }
+
         UserManagerSimpleInfoVo userManagerSimpleInfoVo = (UserManagerSimpleInfoVo) session.getAttribute(Const.CURRENT_USER);
         if (userManagerSimpleInfoVo == null){
             return ServerResponse.serverResponseByFail(10,"用户未登录，请登录");

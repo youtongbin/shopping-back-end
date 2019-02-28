@@ -4,6 +4,7 @@ import com.ytb.shopping.pojo.Product;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ProductMapper {
     /**
@@ -58,5 +59,15 @@ public interface ProductMapper {
      */
     List<Product> findProductsByIdOrName(@Param("productId") Integer productId,
                                          @Param("productName") String productName);
+
+
+    /**
+     * 前台搜索商品
+     * @param integerSet
+     * @param keyword
+     * @return
+     */
+    List<Product> searchProduct(@Param("integerSet") Set<Integer> integerSet,
+                                @Param("keyword") String keyword);
 
 }
